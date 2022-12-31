@@ -1,5 +1,5 @@
 # WindowsHoGPPeripheral
-English | [Japanese](README_ja.md)
+English | [日本語](README_ja.md)
 
 It is a Windows console application that uses C# and .NetFramework and operates as a HID remote control device for Bluetooth LE.
 When connecting Windows and other devices with HoGP, it is common to use Windows as the Central side and receive input from Peripheral such as a BLE connection keyboard, but this time Windows will be the Peripheral side and implement the HID remote control function. .
