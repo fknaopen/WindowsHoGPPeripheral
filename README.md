@@ -38,22 +38,25 @@ This is a sample of sending a key code to bleHID.exe with a UDP client.
 First, start bleHID.exe on Windows.
 When started, bleHID.exe will start Advertise as HID device.
 ![ble1.PNG](images/ble1.PNG)
+
 On the Central device, connect when you receive an Advertise.
 ![ble_c1.PNG](images/ble_c1.PNG)
 ![ble2.PNG](images/ble2.PNG)
+
 Next, when bleHIDsockClient.exe is started on Windows, the sample automatically connects to bleHID.exe via UDP and sends the key code.
 ![ble3.PNG](images/ble3.PNG)
 ![ble_c2.PNG](images/ble_c2.PNG)
+
 When you actually use this program, it is good to minimize bleHID.exe and start it, implement a UDP client on the application side to send the key code.
 
 
 # Notes
 
 * Many devices such as remote controllers on the market are powered by batteries and the Type is PUBLIC for power saving, but BD_ADDRESS Type is RANDOM when Windows is Peripheral like this app, It seems that. Therefore, the implementation on the Central side needs to handle changes in BD_ADDRESS.
-* If you restart this app running on Windows, it seems that if you do not restart the Central side as well, it will fail with ErrorCode 574 or 532 when trying to connect after receiving Advertise.
--> E NimBLEClient: "Connection failed; status=574"--> 0x 23E
--> E NimBLEClient: "Connection failed; status=532"--> 0x 214
-https://github.com/h2zero/NimBLE-Arduino/issues/140
+* If you restart this app running on Windows, it seems that if you do not restart the Central side as well, it will fail with ErrorCode 574 or 532 when trying to connect after receiving Advertise.  
+-> E NimBLEClient: "Connection failed; status=574"--> 0x 23E  
+-> E NimBLEClient: "Connection failed; status=532"--> 0x 214  
+https://github.com/h2zero/NimBLE-Arduino/issues/140  
 Since it is impossible to restart the Central side, I added a process to turn BluetoothDevice OFF->ON when starting this app, but this may not be the correct method. I would be happy if you could tell me if there is a better way.
 
 
