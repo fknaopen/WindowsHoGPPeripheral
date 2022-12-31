@@ -38,21 +38,24 @@ UDPクライアントでbleHID.exeへキーコードを送るサンプルです�
 まず、Windows上でbleHID.exeを起動します。
 起動すると、bleHID.exeはHID機器としてAdvertiseを開始します。
 ![ble1.PNG](images/ble1.PNG)
+
 Central機器で、Advertiseを受けたらConnectします。
 ![ble_c1.PNG](images/ble_c1.PNG)
 ![ble2.PNG](images/ble2.PNG)
+
 次に、Windows上でbleHIDsockClient.exeを起動すると、サンプルでは自動でbleHID.exeへUDPで接続してキーコードを送信します。
 ![ble3.PNG](images/ble3.PNG)
 ![ble_c2.PNG](images/ble_c2.PNG)
+
 このプログラムを実際に使うときには、bleHID.exeは最小化して起動しておき、作成するアプリ側にはUDPクライアントを実装しキーコードを送ると良いです。
 
 
 # Note
 
 * 市販のリモコン等のデバイスは電池で動き省電力化のためTypeはPUBLICになっているものが多いのですが、このアプリのようにWindowsをPeripheralにした場合のBD_ADDRESSのTypeはRANDOMが使われるようです。よって、Central側の実装にはBD_ADDRESSが変更される事への対応が必要です。
-* Windows上で動作しているこのアプリを再起動した場合、Central側も再起動しないとAdvertiseを受けた後、Connectしようとして ErrorCode 574や532で失敗するようです。
- -> E NimBLEClient: "Connection failed; status=574"--> 0x 23E
- -> E NimBLEClient: "Connection failed; status=532"--> 0x 214
+* Windows上で動作しているこのアプリを再起動した場合、Central側も再起動しないとAdvertiseを受けた後、Connectしようとして ErrorCode 574や532で失敗するようです。  
+ -> E NimBLEClient: "Connection failed; status=574"--> 0x 23E  
+ -> E NimBLEClient: "Connection failed; status=532"--> 0x 214   
 https://github.com/h2zero/NimBLE-Arduino/issues/140
 Central側の再起動は不可能なため、このアプリの起動時にBluetoothDeviceをOFF->ONする処理を入れて対策しましたが、これは正しい方法ではないかもしれません。より良い方法があれば教えていただけると嬉しいです。
 
