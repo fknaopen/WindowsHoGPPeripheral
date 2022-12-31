@@ -56,7 +56,7 @@ Central機器で、Advertiseを受けたらConnectします。
 * Windows上で動作しているこのアプリを再起動した場合、Central側も再起動しないとAdvertiseを受けた後、Connectしようとして ErrorCode 574や532で失敗するようです。  
  -> E NimBLEClient: "Connection failed; status=574"--> 0x 23E  
  -> E NimBLEClient: "Connection failed; status=532"--> 0x 214   
-https://github.com/h2zero/NimBLE-Arduino/issues/140
+https://github.com/h2zero/NimBLE-Arduino/issues/140  
 Central側の再起動は不可能なため、このアプリの起動時にBluetoothDeviceをOFF->ONする処理を入れて対策しましたが、これは正しい方法ではないかもしれません。より良い方法があれば教えていただけると嬉しいです。
 
 
